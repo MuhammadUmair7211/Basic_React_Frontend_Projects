@@ -1,0 +1,27 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: inter;
+}
+body {
+	min-height: 100vh;
+}
+.app-container {
+	display: flex;
+}
+.app-content {
+	width: 100%;
+}
+.posts {
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.form {
+	max-width: 600px;
+	margin: 10px auto;
+}
+.form textarea {
+	resize: none;
+}

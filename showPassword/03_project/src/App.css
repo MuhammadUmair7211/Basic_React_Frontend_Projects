@@ -1,0 +1,27 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Courier New', Courier, monospace;
+}
+body{
+  min-height: 100vh;
+  display: flex;
+  background-color: lightseagreen;
+  justify-content: center;
+}
+.password-field{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  background-color: #fff;
+}
+.password-field input{
+  border: none;
+  padding: 0.5rem 1rem;
+  outline: none;
+}
+.password-field i{
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}

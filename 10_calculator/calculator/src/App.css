@@ -1,0 +1,12 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+.calculator {
+	border: 1px solid black;
+	max-width: 400px;
+	padding: 10px;
+	background-color: #4d4747;
+	border-radius: 10px;
+}

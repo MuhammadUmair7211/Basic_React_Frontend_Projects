@@ -1,0 +1,37 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: lato;
+}
+body {
+	min-height: 100vh;
+}
+.counter-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+	max-width: 500px;
+	padding: 50px 10px;
+	box-shadow: 0px 0px 5px 0px;
+}
+.input-container {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+input {
+	padding: 5px 10px;
+	outline: none;
+}
+button {
+	padding: 5px 15px;
+}
+.add-button {
+	background-color: green;
+	color: white;
+}
+.subtract-button {
+	background-color: red;
+	color: white;
+}

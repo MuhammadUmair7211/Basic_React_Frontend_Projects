@@ -1,0 +1,22 @@
+.navbar-brand img{
+    width: 100px;
+}
+.navbar-nav li{
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.container-fluid .navbar-nav{
+    margin: 0 auto;
+}
+.footer{
+    position: fixed;
+    bottom: 0px;
+}
+ul{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+li a{
+    color: lightseagreen;
+}

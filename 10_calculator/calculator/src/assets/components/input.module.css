@@ -1,0 +1,13 @@
+.inputField {
+	width: 100%;
+	padding: 10px 5px;
+	font-size: 20px;
+	outline: none;
+	background-color: #e7e3e3;
+	color: black;
+	border: none;
+	border-radius: 10px;
+}
+.inputField::placeholder {
+	color: black;
+}

@@ -1,0 +1,77 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: cursive;
+}
+.todo-container {
+	border: 1px solid black;
+	max-width: 700px;
+	margin: 0 auto;
+	padding: 10px 30px;
+}
+h1 {
+	text-align: center;
+}
+form {
+	margin: 10px 0;
+}
+form input {
+	background-color: #dfe4ea;
+	border: none;
+	outline: none;
+	font-size: 18px;
+	cursor: pointer;
+}
+form input[type="text"] {
+	padding: 6px 10px;
+	width: 50%;
+}
+form input[type="date"] {
+	padding: 6px 10px;
+}
+
+.add-button {
+	padding: 6px 20px;
+	background-color: #1289a7;
+	border: none;
+	color: white;
+	font-size: 18px;
+	cursor: pointer;
+}
+ol {
+	margin-left: 15px;
+	margin-top: 20px;
+}
+.todo-task {
+	width: 75%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.todo-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 10px;
+}
+.delete-button {
+	background-color: red;
+	color: white;
+	border: none;
+	padding: 8px 15px;
+	font-size: 16px;
+	cursor: pointer;
+}
+.input-fields {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.no-task-para {
+	margin-top: 20px;
+	text-align: center;
+	color: darkgreen;
+	font-size: 20px;
+	font-weight: bold;
+}
