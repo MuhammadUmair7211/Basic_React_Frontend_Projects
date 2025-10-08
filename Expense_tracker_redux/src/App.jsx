@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addExpense, deleteExpense } from "./redux/features/expenseSlice";
 const App = () => {
@@ -6,11 +6,22 @@ const App = () => {
 	const [amount, setAmount] = useState("");
 	const [expense, setExpense] = useState("");
 	const dispatch = useDispatch();
-
 	const expensesStateArray = useSelector((state) => state.expense.expenses);
 	const totalBalance = useSelector((state) => state.expense.user.balance);
 	const totalIncome = useSelector((state) => state.expense.user.income);
 	const totalExpense = useSelector((state) => state.expense.user.expense);
+
+	useEffect(() => {
+		// ✅ Load from localStorage only once when app starts
+		const storedExpenses = localStorage.getItem("expenses");
+		if (storedExpenses) {
+			const parsed = JSON.parse(storedExpenses);
+			parsed.forEach((item) => dispatch(addExpense(item))); // load into Redux
+		}
+	}, [dispatch]);
+	useEffect(() => {
+		localStorage.setItem("expenses", JSON.stringify(expensesStateArray));
+	}, [expensesStateArray]);
 
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
@@ -26,13 +37,16 @@ const App = () => {
 				amount: amount,
 			})
 		);
+		setTitle("");
+		setAmount("");
+		setExpense("");
 	};
 	return (
-		<div className="min-h-screen bg-gray-900 text-center text-white p-4">
+		<div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-center text-white p-4">
 			<h1 className="text-xl md:text-3xl font-bold mb-8">💰 Expense Tracker</h1>
 
-			<div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-				<div className="max-w-2xl w-full mx-auto">
+			<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-7xl w-full mx-auto">
+				<div className="">
 					{/* Balance Summary */}
 					<div className="bg-gray-800 p-6 text-center mb-8">
 						<h2 className="text-lg text-gray-400">Your Balance</h2>
@@ -86,7 +100,7 @@ const App = () => {
 						</select>
 						<button
 							type="submit"
-							className="w-full bg-blue-500 hover:bg-blue-600 py-2 rounded font-semibold"
+							className="w-full bg-blue-500 hover:bg-blue-600 duration-300 cursor-pointer py-2 rounded font-semibold"
 						>
 							Add
 						</button>
@@ -94,7 +108,7 @@ const App = () => {
 				</div>
 
 				{/* Expense List */}
-				<div className="bg-gray-800 p-6 max-w-2xl text-center w-full mx-auto">
+				<div className="bg-gray-800 p-6 text-center w-full mx-auto">
 					<h3 className="text-xl mb-4 font-semibold">History</h3>
 					{expensesStateArray.length === 0 ? (
 						<p className="text-gray-500 text-center">No transactions yet.</p>
@@ -104,7 +118,7 @@ const App = () => {
 								<li
 									key={exp.id}
 									className={`flex justify-between p-2 rounded-lg ${
-										exp.type === "income" ? "bg-green-600/20" : "bg-red-600/20"
+										exp.type === "income" ? "bg-green-600/50" : "bg-red-600/50"
 									}`}
 								>
 									<span>{exp.title}</span>
@@ -113,7 +127,7 @@ const App = () => {
 											{exp.type === "income" ? "+" : "-"}Rs {exp.amount}
 										</span>
 										<button
-											onClick={() => dispatch(deleteExpense({ exp }))}
+											onClick={() => dispatch(deleteExpense(exp.id))}
 											className="text-sm bg-red-500 hover:bg-red-600 cursor-pointer duration-300 py-1 px-2 rounded-md"
 										>
 											Delete

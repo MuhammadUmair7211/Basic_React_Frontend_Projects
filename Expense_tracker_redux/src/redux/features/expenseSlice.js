@@ -1,28 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-	user: { balance: 500, expense: 1000, income: 50000 },
-	expenses: [
-		{
-			id: 1,
-			type: "expense",
-			title: "cooking",
-			amount: 5000,
-		},
-		{
-			id: 2,
-			type: "expense",
-			title: "education expenditure",
-			amount: 3000,
-		},
-		{
-			id: 3,
-			type: "expense",
-			title: "cooking",
-			amount: 200,
-		},
-	],
+	user: { balance: 50000, expense: 0, income: 50000 },
+	expenses: [],
 };
-
 const expenseSlice = createSlice({
 	name: "expense",
 	initialState,
@@ -39,8 +19,19 @@ const expenseSlice = createSlice({
 			state.user.balance = state.user.income - state.user.expense;
 		},
 		deleteExpense: (state, action) => {
-			const { id } = action.payload.exp;
-			console.log(id);
+			const id = action.payload;
+			const deletedExpense = state.expenses.find((exp) => exp.id === id);
+			if (deletedExpense) {
+				if (deletedExpense.type === "expense") {
+					state.user.expense -= Number(deletedExpense.amount);
+				} else if (deletedExpense.type === "income") {
+					state.user.income -= Number(deletedExpense.amount);
+				}
+
+				// Recalculate balance
+				state.user.balance = state.user.income - state.user.expense;
+			}
+			state.expenses = state.expenses.filter((exp) => exp.id !== id);
 		},
 	},
 });
